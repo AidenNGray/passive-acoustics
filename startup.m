@@ -1,1 +1,1 @@
-addpath(genpath('tools'))
+%addpath(genpath('tools'))
