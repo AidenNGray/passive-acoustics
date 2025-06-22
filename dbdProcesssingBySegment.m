@@ -3,11 +3,11 @@
 
 % Directory containing ASCII files
 dataDir = 'C:\Users\graya\MATLAB\Projects\passive-acoustics\labsimtests\simest';  % <-- Update this!
-filePattern = fullfile(dataDir, '*.dbdasc');  % Adjust extension if needed
+filePattern = fullfile(dataDir, '*.ebdasc');  % Adjust extension if needed
 fileList = dir(filePattern);
 
 % Master structure to hold everything
-flightData = struct();
+sciData = struct();
 
 % Loop over all files
 for k = 1:length(fileList)
@@ -32,6 +32,7 @@ for k = 1:length(fileList)
     
     % --- Skip data type line (line 16) ---
     fgetl(fid);
+    fgetl(fid);
 
     % --- Read numeric data ---
     data = textscan(fid, repmat('%f', 1, numel(varNames)), 'Delimiter', ' ', 'CollectOutput', true);
@@ -55,6 +56,6 @@ for k = 1:length(fileList)
     
     % --- Store into main struct under filename key ---
     baseName = sprintf("segment%d",k);
-    flightData.(baseName).meta = meta;
-    flightData.(baseName).data = vars;
+    sciData.(baseName).meta = meta;
+    sciData.(baseName).data = vars;
 end

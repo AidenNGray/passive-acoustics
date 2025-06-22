@@ -17,7 +17,7 @@ for varid = 0:nvars-1
     
     % Display variable name and data (optional)
     fprintf('Variable: %s\n', varname);
-    %disp(data);
+    disp(data);
 end
 
 % Close the NetCDF file
