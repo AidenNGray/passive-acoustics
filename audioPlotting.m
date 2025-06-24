@@ -43,3 +43,20 @@ ylabel('Frequency (Hz)');
 title('Spectrogram with Datetime X-Axis');
 colorbar;
 colormap('parula');
+
+% From processed audio data
+nc_file_name = 'glider_ANGUS_glider_1_240201_024028';
+ncObj = easyNC.Reader([nc_file_name '.nc']);
+audioData = ncObj.read2struct();
+
+%timeVec = startTime + seconds(T);
+
+figure;
+imagesc(audioData.time, audioData.freq, 10*log10(abs(double(audioData.spectrogram))));
+axis xy;
+xlabel('Time');
+ylabel('Frequency (Hz)');
+title('Spectrogram from NC File');
+colorbar;
+clim([40 50]);
+colormap('parula');

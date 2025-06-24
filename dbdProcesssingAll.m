@@ -3,10 +3,10 @@
 
 % Directory containing ASCII files
 dataDir = 'C:\Users\graya\MATLAB\Projects\passive-acoustics\labsimtests\simest';  % <-- Update this!
-filePattern = fullfile(dataDir, '*.ebdasc');
+filePattern = fullfile(dataDir, '*.dbdasc');
 fileList = dir(filePattern);
 
-sciDataAll = struct();
+flightDataAll = struct();
 varNames = [];
 
 % Loop over all files
@@ -40,19 +40,24 @@ for k = 1:length(fileList)
     for i = 1:numel(varNames)
         field = matlab.lang.makeValidName(varNames{i});
         vec = data{1}(:, i);
-        if isfield(sciDataAll, field)
-            sciDataAll.(field) = [sciDataAll.(field); vec];
+        if isfield(flightDataAll, field)
+            flightDataAll.(field) = [flightDataAll.(field); vec];
         else
-            sciDataAll.(field) = vec;
+            flightDataAll.(field) = vec;
         end
     end
 end
 
 % --- Remove fields that are entirely NaN ---
-fields = fieldnames(sciDataAll);
+fields = fieldnames(flightDataAll);
 for i = 1:numel(fields)
-    vec = sciDataAll.(fields{i});
+    vec = flightDataAll.(fields{i});
     if all(isnan(vec))
-        sciDataAll = rmfield(sciDataAll, fields{i});
+        flightDataAll = rmfield(flightDataAll, fields{i});
     end
 end
+
+% --- Sort in chonological order ---
+[~, sort_idx] = sort(flightDataAll.m_present_time);
+flightDataAll = structfun(@(x) x(sort_idx), flightDataAll, 'UniformOutput', false);
+
