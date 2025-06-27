@@ -39,6 +39,7 @@ codegen/
 *.ebd
 *.ebdasc
 *.wav
+*.log
 
 labsimtests/
 2024 nc/
