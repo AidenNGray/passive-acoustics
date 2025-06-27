@@ -31,3 +31,9 @@ codegen/
 
 # Cloud based storage dotfile
 .MATLABDriveTag
+
+# Data files
+*.nc
+
+# Tools
+DMON software/
