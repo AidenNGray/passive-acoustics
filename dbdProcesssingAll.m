@@ -2,11 +2,11 @@
 % Made with AI assistance
 
 % Directory containing ASCII files
-dataDir = 'C:\Users\graya\MATLAB\Projects\passive-acoustics\labsimtests\simest';  % <-- Update this!
+dataDir = 'D:\audio data\2024 angus1\dbdasc';  % <-- Update this!
 filePattern = fullfile(dataDir, '*.dbdasc');
 fileList = dir(filePattern);
 
-flightDataAll = struct();
+angusJan24FlightData = struct();
 varNames = [];
 
 % Loop over all files
@@ -40,24 +40,24 @@ for k = 1:length(fileList)
     for i = 1:numel(varNames)
         field = matlab.lang.makeValidName(varNames{i});
         vec = data{1}(:, i);
-        if isfield(flightDataAll, field)
-            flightDataAll.(field) = [flightDataAll.(field); vec];
+        if isfield(angusJan24FlightData, field)
+            angusJan24FlightData.(field) = [angusJan24FlightData.(field); vec];
         else
-            flightDataAll.(field) = vec;
+            angusJan24FlightData.(field) = vec;
         end
     end
 end
 
 % --- Remove fields that are entirely NaN ---
-fields = fieldnames(flightDataAll);
+fields = fieldnames(angusJan24FlightData);
 for i = 1:numel(fields)
-    vec = flightDataAll.(fields{i});
+    vec = angusJan24FlightData.(fields{i});
     if all(isnan(vec))
-        flightDataAll = rmfield(flightDataAll, fields{i});
+        angusJan24FlightData = rmfield(angusJan24FlightData, fields{i});
     end
 end
 
 % --- Sort in chonological order ---
-[~, sort_idx] = sort(flightDataAll.m_present_time);
-flightDataAll = structfun(@(x) x(sort_idx), flightDataAll, 'UniformOutput', false);
+[~, sort_idx] = sort(angusJan24FlightData.m_present_time);
+angusJan24FlightData = structfun(@(x) x(sort_idx), angusJan24FlightData, 'UniformOutput', false);
 

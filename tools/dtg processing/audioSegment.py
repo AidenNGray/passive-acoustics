@@ -117,7 +117,7 @@ def split_wav_by_time(input_file, log_file, seg_length = 12, output_dir="segment
 # Example usage
 if __name__ == "__main__":
     # Read start time from log file and split WAV
-    base_file_name = "angus_whale_2024_03_18"
+    base_file_name = "franklin_whale_jan_2025"
     audio_dir = "tools/dtg processing/audio/"
     log_dir = "tools/dtg processing/logs/"
     segment_length = 12 # hours
