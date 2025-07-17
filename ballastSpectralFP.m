@@ -19,9 +19,9 @@ parameters.noverlap = 512;
 parameters.nfft = 2048;
 
 % preallocation
-num_freqs = nfft/2 + 1;
-baseline_psd = zeros(N_baseline, num_freqs);
-motor_psd = zeros(N_motor, num_freqs);
+num_freqs = parameters.nfft/2 + 1;
+baseline_psd = zeros(N_segments, num_freqs);
+motor_psd = zeros(N_segments, num_freqs);
 
 %% PSD computations
 
@@ -46,7 +46,7 @@ plot(fBL, mean(baseline_psd), 'b', fMotor, mean(motor_psd), 'r');
 xlabel('Frequency (Hz)');
 ylabel('Power/Frequency (dB/Hz)');
 legend('Baseline', 'Motor');
-title('Average PSD Comparison');
+title('Average PSD Comparison   n=30    t=6sec');
 grid on;
 
 %% Statistical differences plotting
@@ -58,7 +58,7 @@ mDif = mean(motor_psd - baseline_psd);
 figure;
 plot(fMotor, mDif, 'k');
 hold on;
-plot(f(significant), mDif(significant), 'ro');
+plot(fMotor(significant), mDif(significant), 'ro');
 xlabel('Frequency (Hz)');
 ylabel('Mean PSD Difference (dB)');
 title('Motor - Baseline (Significant Points Highlighted)');
