@@ -65,3 +65,16 @@ title('Motor - Baseline (Significant Points Highlighted)');
 grid on;
 hold off;
 
+%% Exporting FP
+
+specFP.motor = 'ballast';
+specFP.samples = timestamps;
+specFP.numSamples = N_segments;
+specFP.signifcance = significant;
+specFP.freq = fMotor;
+specFP.avgMotor = motor_psd;
+specFP.avgBaseline = baseline_psd;
+specFP.fingerprint = mDif;
+
+save("ballastFingerprint.mat", 'specFP')
+

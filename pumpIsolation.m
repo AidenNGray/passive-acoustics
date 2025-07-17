@@ -89,8 +89,8 @@ baselineSegment = yMono(startSample:endSample);
 
 % Ballast
 startHours = 0;
-startMinutes = 58;
-startSeconds = 7;
+startMinutes = 59;
+startSeconds = 6;
 endSeconds = 13.5;
 
 startTime = (startHours*3600) + (startMinutes)*60 + startSeconds;  % seconds
