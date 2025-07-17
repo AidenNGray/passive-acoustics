@@ -146,7 +146,7 @@ figure
 hold on;
 plot(baseF, 10*log10(basePXX));
 plot(ballastF, 10*log10(ballastPXX));
-plot(pitchF, 10*log10(pitchPXX));
+%plot(pitchF, 10*log10(pitchPXX));
 %plot(f, 10*log10(pxx));
 xlabel('Frequency (Hz)');
 ylabel('Power/Frequency (dB/Hz)');
