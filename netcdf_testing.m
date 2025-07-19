@@ -1,4 +1,5 @@
 % Specify the NetCDF file
+addpath(genpath('2024 nc'))
 filename = 'glider_ANGUS_glider_1_240201_001028.nc';
 
 % Open the NetCDF file
@@ -17,7 +18,7 @@ for varid = 0:nvars-1
     
     % Display variable name and data (optional)
     fprintf('Variable: %s\n', varname);
-    disp(data);
+    %disp(data);
 end
 
 % Close the NetCDF file

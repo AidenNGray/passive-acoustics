@@ -85,7 +85,7 @@ imagesc(dmonTime, F, 10*log10(abs(S)));
 axis xy;
 ylabel('Frequency (Hz)');
 title('Spectrogram with Datetime X-Axis');
-%colorbar;
+colorbar;
 colormap('spring');
 xlim([flightTime(begin) flightTime(stop)])
 
